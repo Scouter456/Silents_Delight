@@ -3,7 +3,6 @@ package com.scouter.silentsdelight.mixin;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.scouter.silentsdelight.effects.SDEffects;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.gameevent.GameEvent;

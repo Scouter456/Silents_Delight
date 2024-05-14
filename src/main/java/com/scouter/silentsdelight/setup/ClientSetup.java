@@ -1,5 +1,6 @@
 package com.scouter.silentsdelight.setup;
 
+import com.scouter.silentsdelight.config.SilentsDelightConfig;
 import com.scouter.silentsdelight.message.EntityRenderOutlineMessage;
 import com.scouter.silentsdelight.player.VibrationEntities;
 import net.fabricmc.api.ClientModInitializer;
@@ -24,6 +25,7 @@ public class ClientSetup implements ClientModInitializer {
         RenderLayerRegistration();
 
         ClientTickEvents.START_CLIENT_TICK.register((e) -> {
+            if(!SilentsDelightConfig.WARDEN_SENSE_SOUND) return;
             Minecraft minecraft = Minecraft.getInstance();
             ClientLevel level = minecraft.level;
             if (level == null)
@@ -39,7 +41,7 @@ public class ClientSetup implements ClientModInitializer {
                 BlockState state = entity.getBlockStateOn();
                 if(state.is(Blocks.AIR)) continue;
                 SoundEvent event1 = state.getSoundType().getStepSound();
-                level.playLocalSound(entity.blockPosition(), event1, SoundSource.AMBIENT, 10F, 1F, false);
+                level.playLocalSound(entity.blockPosition(), event1, SoundSource.AMBIENT, SilentsDelightConfig.WARDEN_SENSE_SOUND_VOLUME, 1F, true);
             }
         });
     }

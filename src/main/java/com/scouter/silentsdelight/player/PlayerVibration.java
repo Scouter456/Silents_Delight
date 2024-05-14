@@ -1,6 +1,5 @@
 package com.scouter.silentsdelight.player;
 
-import com.scouter.silentsdelight.SilentsDelight;
 import com.scouter.silentsdelight.effects.SDEffects;
 import com.scouter.silentsdelight.message.EntityRenderOutlineMessage;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
