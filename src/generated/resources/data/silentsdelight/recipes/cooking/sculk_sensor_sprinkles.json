@@ -1,0 +1,39 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "farmersdelight"
+        }
+      ],
+      "recipe": {
+        "type": "farmersdelight:cooking",
+        "container": {
+          "item": "minecraft:bowl"
+        },
+        "cookingtime": 200,
+        "experience": 0.35,
+        "ingredients": [
+          {
+            "item": "minecraft:sculk"
+          },
+          {
+            "item": "minecraft:sweet_berries"
+          },
+          {
+            "item": "minecraft:sugar"
+          },
+          {
+            "item": "silentsdelight:sculk_sensor_tendril"
+          }
+        ],
+        "recipe_book_tab": "meals",
+        "result": {
+          "item": "silentsdelight:sculk_sensor_sprinkles"
+        }
+      }
+    }
+  ]
+}

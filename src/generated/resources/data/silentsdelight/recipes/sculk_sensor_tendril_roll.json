@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "silentsdelight:sculk_sensor_tendril"
+    },
+    "R": {
+      "item": "farmersdelight:cooked_rice"
+    },
+    "X": {
+      "item": "minecraft:carrot"
+    }
+  },
+  "pattern": [
+    "RXR",
+    "###"
+  ],
+  "result": {
+    "item": "silentsdelight:sculk_sensor_tendril_roll"
+  },
+  "show_notification": true
+}

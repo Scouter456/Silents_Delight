@@ -2,24 +2,30 @@ package com.scouter.silentsdelight.datagen;
 
 import com.google.common.collect.ImmutableMap;
 import com.scouter.silentsdelight.SilentsDelight;
+import com.scouter.silentsdelight.items.SDItems;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import vectorwing.farmersdelight.FarmersDelight;
+import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
+import vectorwing.farmersdelight.common.registry.ModItems;
+import vectorwing.farmersdelight.common.tag.ForgeTags;
 import vectorwing.farmersdelight.data.builder.CookingPotRecipeBuilder;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
@@ -27,6 +33,12 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
+
+import static com.scouter.silentsdelight.SilentsDelight.prefix;
+import static net.minecraft.advancements.critereon.InventoryChangeTrigger.TriggerInstance.hasItems;
+import static vectorwing.farmersdelight.data.recipe.CookingRecipes.MEDIUM_EXP;
+import static vectorwing.farmersdelight.data.recipe.CookingRecipes.NORMAL_COOKING;
 
 public class RecipeGenerator extends RecipeProvider implements IConditionBuilder {
     //private static final List<ItemLike> VELERIUM_SMELTABLES = List.of(ABlocks.VELERIUM_ORE.get(), AItems.RAW_VELERIUM.get());
@@ -55,91 +67,172 @@ public class RecipeGenerator extends RecipeProvider implements IConditionBuilder
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> pRecipeOutput) {
-        generateForEnabledBlockFamilies(pRecipeOutput, FeatureFlagSet.of(FeatureFlags.VANILLA));
-        generateForEnabledBlockFamilies(pRecipeOutput, FeatureFlagSet.of(FeatureFlags.VANILLA));
-
-        //oreSmelting(pWriter, VELERIUM_SMELTABLES, RecipeCategory.MISC, AItems.VELERIUM.get(), 0.25f, 200, "sapphire");
-        //oreBlasting(pWriter, VELERIUM_SMELTABLES, RecipeCategory.MISC, AItems.VELERIUM.get(), 0.25f, 100, "velerium");
-        
-        // ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SAPPHIRE_BLOCK.get())
-        //         .pattern("SSS")
-        //         .pattern("SSS")
-        //         .pattern("SSS")
-        //         .define('S', ModItems.SAPPHIRE.get())
-        //         .unlockedBy(getHasName(ModItems.SAPPHIRE.get()), has(ModItems.SAPPHIRE.get()))
-        //         .save(pWriter);
-//
-        // ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.SAPPHIRE.get(), 9)
-        //         .requires(ModBlocks.SAPPHIRE_BLOCK.get())
-        //         .unlockedBy(getHasName(ModBlocks.SAPPHIRE_BLOCK.get()), has(ModBlocks.SAPPHIRE_BLOCK.get()))
-        //         .save(pWriter);
-
-        //wrap(ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,AItems.ARGON_FLASH.get())
-        //        .define('G', Tags.Items.GLASS)
-        //        .define('P', Tags.Items.ENDER_PEARLS)
-        //        .pattern(" P ")
-        //        .pattern("PGP")
-        //        .pattern(" P ")
-        //        .unlockedBy("has_smelts_to_glass",has(ItemTags.SMELTS_TO_GLASS)),"clear_view_block_water_normal", pWriter, not(modLoaded("netherdepthsupgrade")));
-
-        //wrap(ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,AItems.ARGON_FLASH.get())
-        //        .define('G', Tags.Items.GLASS)
-        //        .define('P', Tags.Items.ENDER_PEARLS)
-        //        .pattern(" P ")
-        //        .pattern("PGP")
-        //        .pattern(" P ")
-        //        .unlockedBy("has_smelts_to_glass",has(ItemTags.SMELTS_TO_GLASS)),"clear_view_block_water_ndu", pWriter, modLoaded("netherdepthsupgrade"));
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD ,SDItems.WARDEN_EAR_ON_A_STICK.get(), 1)
+                .requires(Items.STICK)
+                .requires(SDItems.WARDEN_EAR.get())
+                .unlockedBy("has_warden_ear", has(SDItems.WARDEN_EAR.get()))
+                .save(pRecipeOutput);
 
 
-        //wrap(ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,AItems.ARGON_FLASH.get())
-        //        .define('G', Tags.Items.GLASS)
-        //        .define('P', Tags.Items.ENDER_PEARLS)
-        //        .pattern(" P ")
-        //        .pattern("PGP")
-        //        .pattern(" P ")
-        //        .unlockedBy("has_smelts_to_glass",has(ItemTags.SMELTS_TO_GLASS)),"clear_view_block_lava_normal", pWriter, not(modLoaded("netherdepthsupgrade")));
-//
-        //wrap(ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS,AItems.ARGON_FLASH.get())
-        //        .define('G', Tags.Items.GLASS)
-        //        .define('P', Tags.Items.ENDER_PEARLS)
-        //        .pattern(" P ")
-        //        .pattern("PGP")
-        //        .pattern(" P ")
-        //        .unlockedBy("has_smelts_to_glass",has(ItemTags.SMELTS_TO_GLASS)),"clear_view_block_lava_ndu", pWriter, modLoaded("netherdepthsupgrade"));
-        //SimpleCookingRecipeBuilder.smelting()
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SDItems.SCULK_BARBECUE_STICK.get())
+                .requires(ForgeTags.CROPS_TOMATO)
+                .requires(Ingredient.fromValues(Stream.of(
+                        new Ingredient.ItemValue(new ItemStack(SDItems.SCULK_SENSOR_TENDRIL.get())),
+                        new Ingredient.ItemValue(new ItemStack(SDItems.WARDEN_EAR.get()))
+                        )))
+                .requires(Ingredient.fromValues(Stream.of(
+                        new Ingredient.ItemValue(new ItemStack(SDItems.SCULK_SENSOR_TENDRIL.get())),
+                        new Ingredient.ItemValue(new ItemStack(SDItems.WARDEN_EAR.get()))
+                )))
+                .requires(Items.STICK)
+                .unlockedBy("has_sculk_sensor_tendril", InventoryChangeTrigger.TriggerInstance.hasItems(SDItems.SCULK_SENSOR_TENDRIL.get()))
+                .unlockedBy("has_warden_ear", InventoryChangeTrigger.TriggerInstance.hasItems(SDItems.WARDEN_EAR.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SDItems.HEARTBURGER.get())
+                .requires(ForgeTags.BREAD)
+                .requires(SDItems.WARDEN_HEART_PATTY.get())
+                .requires(ForgeTags.SALAD_INGREDIENTS)
+                .requires(ForgeTags.CROPS_TOMATO)
+                .requires(ForgeTags.CROPS_ONION)
+                .unlockedBy("has_warden_heart_patty", InventoryChangeTrigger.TriggerInstance.hasItems(SDItems.WARDEN_HEART_PATTY.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, SDItems.SCULK_SENSOR_TENDRIL_ROLL.get(), 1)
+                .pattern("RXR")
+                .pattern("###")
+                .define('#', SDItems.SCULK_SENSOR_TENDRIL.get())
+                .define('R', ModItems.COOKED_RICE.get())
+                .define('X', Items.CARROT)
+                .unlockedBy("has_sculk_sensor_tendril", InventoryChangeTrigger.TriggerInstance.hasItems(SDItems.SCULK_SENSOR_TENDRIL.get()))
+                .save(pRecipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SDItems.PLATED_WARDEN_HEART.get())
+                .requires(ForgeTags.MILK)
+                .requires(Items.BAKED_POTATO)
+                .requires(ForgeTags.CROPS_ONION)
+                .requires(Items.BOWL)
+                .requires(SDItems.WARDEN_HEART.get())
+                .unlockedBy("has_warden_heart", InventoryChangeTrigger.TriggerInstance.hasItems(SDItems.WARDEN_HEART.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, SDItems.SCULK_CATALYST_PIE_CRUST.get(), 1)
+                .pattern(" S ")
+                .pattern("wMw")
+                .pattern(" S ")
+                .define('w', Items.WHEAT)
+                .define('M', ForgeTags.MILK)
+                .define('S', Items.SCULK_CATALYST)
+                .unlockedBy("has_sculk_catalyst", InventoryChangeTrigger.TriggerInstance.hasItems(Items.SCULK_CATALYST))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, SDItems.SCULK_CATALYST_PIE.get(), 1)
+                .pattern("###")
+                .pattern("aaa")
+                .pattern("xOx")
+                .define('#', Items.WHEAT)
+                .define('a', Items.SCULK_CATALYST)
+                .define('x', Items.SCULK)
+                .define('O', SDItems.SCULK_CATALYST_PIE_CRUST.get())
+                .unlockedBy("has_sculk_catalyst_pie_crust", InventoryChangeTrigger.TriggerInstance.hasItems(SDItems.SCULK_CATALYST_PIE_CRUST.get()))
+                .save(pRecipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, SDItems.SCULK_CATALYST_PIE.get(), 1)
+                .pattern("##")
+                .pattern("##")
+                .define('#', SDItems.SCULK_CATALYST_PIE_SLICE.get())
+                .unlockedBy("has_sculk_catalyst_pie_slice", InventoryChangeTrigger.TriggerInstance.hasItems(SDItems.SCULK_CATALYST_PIE_SLICE.get()))
+                .save(pRecipeOutput, prefix("sculk_catalyst_pie_from_slices"));
 
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, SDItems.SCULK_VEIN_SALAD.get())
+                .requires(Items.SCULK_VEIN)
+                .requires(ForgeTags.CROPS_TOMATO)
+                .requires(Items.BEETROOT)
+                .requires(Items.BOWL)
+                .unlockedBy("has_bowl", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BOWL))
+                .save(pRecipeOutput);
+        cookMeals(pRecipeOutput);
+        cuttingAnimalItems(pRecipeOutput);
+        smeltingRecipes(pRecipeOutput);
+    }
+
+    private void cookMeals(Consumer<FinishedRecipe> consumer) {
+
+        wrap(CookingPotRecipeBuilder.cookingPotRecipe(SDItems.WARDEN_EAR_FRIED_RICE.get(), 1, NORMAL_COOKING, MEDIUM_EXP)
+                        .addIngredient(SDItems.CUT_WARDEN_EAR.get())
+                        .addIngredient(ForgeTags.CROPS_RICE)
+                        .addIngredient(ForgeTags.EGGS)
+                        .addIngredient(Items.CARROT)
+                        .addIngredient(ForgeTags.CROPS_ONION)
+                        .unlockedByAnyIngredient(ModItems.RICE.get(), Items.EGG, Items.CARROT, ModItems.ONION.get(), SDItems.WARDEN_EAR.get())
+                        .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                , "cooking/warden_ear_fried_rice", consumer);
+
+        wrap(CookingPotRecipeBuilder.cookingPotRecipe(SDItems.SCULK_SHRIEKER_SHAKE.get(), 1, NORMAL_COOKING, MEDIUM_EXP, Items.GLASS_BOTTLE)
+                        .addIngredient(Items.SCULK_SHRIEKER)
+                        .addIngredient(Items.SUGAR)
+                        .unlockedByItems("has_sculk_shrieker", Items.SCULK_SHRIEKER)
+                        .setRecipeBookTab(CookingPotRecipeBookTab.DRINKS)
+                , "cooking/sculk_shrieker_shake", consumer);
+
+        wrap(CookingPotRecipeBuilder.cookingPotRecipe(SDItems.SCULK_SOUP.get(), 1, NORMAL_COOKING, 0.35F, Items.BOWL)
+                        .addIngredient(Items.SCULK)
+                        .addIngredient(ForgeTags.EGGS)
+                        .addIngredient(ForgeTags.VEGETABLES_CARROT)
+                        .unlockedByItems("has_sculk", Items.SCULK)
+                        .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                , "cooking/sculk_soup", consumer);
+
+        wrap(CookingPotRecipeBuilder.cookingPotRecipe(SDItems.SCULK_SENSOR_SPRINKLES.get(), 1, NORMAL_COOKING, 0.35F, Items.BOWL)
+                        .addIngredient(Items.SCULK)
+                        .addIngredient(Items.SWEET_BERRIES)
+                        .addIngredient(Items.SUGAR)
+                        .addIngredient(SDItems.SCULK_SENSOR_TENDRIL.get())
+                        .unlockedByItems("has_sculk_sensor_tendri;", SDItems.SCULK_SENSOR_TENDRIL.get())
+                        .setRecipeBookTab(CookingPotRecipeBookTab.MEALS)
+                , "cooking/sculk_sensor_sprinkles", consumer);
+    }
+
+    private void cuttingAnimalItems(Consumer<FinishedRecipe> consumer) {
+
+        wrap(CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(Items.SCULK_SENSOR), Ingredient.of(ForgeTags.TOOLS_KNIVES), SDItems.SCULK_SENSOR_TENDRIL.get(), 2)
+                , "cutting/sculk_sensor_tendril", consumer);
+
+        wrap(CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(SDItems.SCULK_SENSOR_TENDRIL_ROLL.get()), Ingredient.of(ForgeTags.TOOLS_KNIVES), SDItems.SCULK_SENSOR_TENDRIL_ROLL_SLICE.get(), 3)
+                , "cutting/sculk_sensor_tendril_roll_slice", consumer);
+
+        wrap(CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(SDItems.SCULK_CATALYST_PIE.get()), Ingredient.of(ForgeTags.TOOLS_KNIVES), SDItems.SCULK_CATALYST_PIE_SLICE.get(), 4)
+                , "cutting/sculk_catalyst_pie", consumer);
+
+        wrap(CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(SDItems.WARDEN_EAR.get()), Ingredient.of(ForgeTags.TOOLS_KNIVES), SDItems.CUT_WARDEN_EAR.get(), 1)
+                        .addResult(Items.BONE_MEAL)
+                , "cutting/warden_ear", consumer);
+
+        wrap(CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(SDItems.WARDEN_HEART.get()), Ingredient.of(ForgeTags.TOOLS_KNIVES), SDItems.MINCED_WARDEN_HEART.get(), 2)
+                , "cutting/minced_warden_heart", consumer);
     }
 
 
-
-    protected void generateForEnabledBlockFamilies(Consumer<FinishedRecipe> pEnabledFeatures, FeatureFlagSet p_251836_) {
-        generateRecipes(pEnabledFeatures, p_251836_);
+    private void farmersDelightRecipes(Consumer<FinishedRecipe> consumer) {
     }
 
-    protected static void generateRecipes(Consumer<FinishedRecipe> pRecipeOutput, FeatureFlagSet pRequiredFeatures) {
-        //SBlockFamilies.getAllFamilies().filter(BlockFamily::shouldGenerateRecipe).forEach(blockFamily -> {
-        //    for (Map.Entry<BlockFamily.Variant, Block> family : blockFamily.getVariants().entrySet()) {
-        //        if (family.getValue().requiredFeatures().isSubsetOf(pRequiredFeatures)) {
-        //            BiFunction<ItemLike, ItemLike, RecipeBuilder> bifunction = SHAPE_CONSUMERS.get(family.getKey());
-        //            ItemLike itemlike = getBaseBlock(blockFamily, family.getKey());
-        //            if (bifunction != null) {
-        //                RecipeBuilder recipebuilder = bifunction.apply(family.getValue(), itemlike);
-        //                blockFamily.getRecipeGroupPrefix()
-        //                        .ifPresent(
-        //                                p_293701_ -> recipebuilder.group(p_293701_ + (family.getKey() == BlockFamily.Variant.CUT ? "" : "_" + family.getKey().getRecipeGroup()))
-        //                        );
-        //                recipebuilder.unlockedBy(blockFamily.getRecipeUnlockedBy().orElseGet(() -> getHasName(itemlike)), has(itemlike));
-        //                recipebuilder.save(pRecipeOutput);
-        //            }
-//
-        //            if (family.getKey() == BlockFamily.Variant.CRACKED) {
-        //                smeltingResultFromBase(pRecipeOutput, family.getValue(), itemlike);
-        //            }
-        //        }
-        //    }
-//
-        //});
+    private void smeltingRecipes(Consumer<FinishedRecipe> consumer) {
+        foodSmeltingRecipes("baked_warden_ear_on_a_stick", SDItems.WARDEN_EAR_ON_A_STICK.get(), SDItems.BAKED_WARDEN_EAR_ON_A_STICK.get(), 0.35F, consumer);
+        foodSmeltingRecipes("warden_heart_patty", SDItems.MINCED_WARDEN_HEART.get(), SDItems.WARDEN_HEART_PATTY.get(), 0.35F, consumer);
+    }
+
+    private void foodSmeltingRecipes(String name, ItemLike ingredient, ItemLike result, float experience, Consumer<FinishedRecipe> consumer) {
+        String namePrefix = new ResourceLocation(FarmersDelight.MODID, name).toString();
+        wrap(SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.FOOD, result, experience, 200)
+                        .unlockedBy(name, hasItems(ingredient))
+                , name, consumer);
+        wrap(SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ingredient), RecipeCategory.FOOD, result, experience, 600)
+                        .unlockedBy(name, hasItems(ingredient))
+                , name + "_from_campfire_cooking", consumer);
+        wrap(SimpleCookingRecipeBuilder.smoking(Ingredient.of(ingredient), RecipeCategory.FOOD ,result, experience, 100)
+                        .unlockedBy(name, hasItems(ingredient))
+                , name + "_from_smoking", consumer);
     }
 
     private Block getBlock(ResourceLocation resourceLocation) {
@@ -158,7 +251,7 @@ public class RecipeGenerator extends RecipeProvider implements IConditionBuilder
         return BuiltInRegistries.ITEM.getKey(block);
     }
     private void wrap(CuttingBoardRecipeBuilder builder, String name, Consumer<FinishedRecipe> consumer, ICondition... conds) {
-        wrap(builder, SilentsDelight.MODID, name, consumer, conds);
+        wrap(builder, SilentsDelight.MODID, name, consumer, modLoaded("farmersdelight"));
     }
     //
     private void wrap(CuttingBoardRecipeBuilder builder, String modid, String name, Consumer<FinishedRecipe> consumer, ICondition... conds) {
@@ -178,7 +271,7 @@ public class RecipeGenerator extends RecipeProvider implements IConditionBuilder
     }
     //
     private void wrap(CookingPotRecipeBuilder builder, String name, Consumer<FinishedRecipe> consumer, ICondition... conds) {
-        wrap(builder, SilentsDelight.MODID, name, consumer, conds);
+        wrap(builder, SilentsDelight.MODID, name, consumer, modLoaded("farmersdelight"));
     }
     //
     private void wrap(CookingPotRecipeBuilder builder, String modid, String name, Consumer<FinishedRecipe> consumer, ICondition... conds) {
@@ -198,7 +291,7 @@ public class RecipeGenerator extends RecipeProvider implements IConditionBuilder
     }
     //
     private void wrap(RecipeBuilder builder, String name, Consumer<FinishedRecipe> consumer, ICondition... conds) {
-        wrap(builder, SilentsDelight.MODID, name, consumer, conds);
+        wrap(builder, SilentsDelight.MODID, name, consumer, modLoaded("farmersdelight"));
     }
     //
     private void wrap(RecipeBuilder builder, String modid, String name, Consumer<FinishedRecipe> consumer, ICondition... conds) {

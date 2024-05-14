@@ -29,6 +29,7 @@ displayName="Silent's Delight" #mandatory
 # A text field displayed in the mod UI
 #credits="" #optional
 # A text field displayed in the mod UI
+logoFile="oceans_delight_logo.png" #optional
 authors="Scouter456" #optional
 # Display Test controls the display for your mod in the server connection screen
 # MATCH_VERSION means that your mod will cause a red X if the versions on client and server differ. This is the default behaviour and should be what you choose if you have server and client elements to your mod.
@@ -39,7 +40,7 @@ authors="Scouter456" #optional
 #displayTest="MATCH_VERSION" # MATCH_VERSION is the default if nothing is specified (#optional)
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''Desc'''
+description='''This is a mod that adds food based on the Deep Dark!'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.silentsdelight]] #optional
     # the modid of the dependency

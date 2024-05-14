@@ -3,6 +3,7 @@ package com.scouter.silentsdelight.datagen;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.logging.LogUtils;
 import com.scouter.silentsdelight.SilentsDelight;
+import com.scouter.silentsdelight.blocks.SDBlocks;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
@@ -13,10 +14,14 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
+import vectorwing.farmersdelight.common.block.FeastBlock;
+import vectorwing.farmersdelight.common.block.PieBlock;
+import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 import java.util.List;
 import java.util.function.Function;
@@ -27,7 +32,7 @@ import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOL
 
 public class SDBlockStateGenerator extends BlockStateProvider {
     private static final Logger LOGGER = LogUtils.getLogger();
-
+    private static final int DEFAULT_ANGLE_OFFSET = 180;
     public SDBlockStateGenerator(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, SilentsDelight.MODID, exFileHelper);
     }
@@ -122,13 +127,53 @@ public class SDBlockStateGenerator extends BlockStateProvider {
         //createSkullBlocks(SBlocks.MAIDENSNATCHER_SKULL);
 
         //createPottedPlant(UPBlocks.ZULOAGAE_SAPLING, UPBlocks.POTTED_ZULOGAE,"cutout");
-
-
+        //this.pieBlock(ModBlocks.APPLE_PIE.get());
+        //this.feastBlock(Mob);
+        pieBlock(SDBlocks.SCULK_CATALYST_PIE.get());
+        feastBlock((FeastBlock) SDBlocks.PLATED_WARDEN_HEART.get());
     }
 
 
+    public void pieBlock(Block block) {
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                            int bites = state.getValue(PieBlock.BITES);
+                            String suffix = bites > 0 ? "_slice" + bites : "";
+                            return ConfiguredModel.builder()
+                                    .modelFile(existingModel(getName(block) + suffix))
+                                    .rotationY(((int) state.getValue(PieBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
+                                    .build();
+                        }
+                );
+    }
+    public void feastBlock(FeastBlock block) {
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    IntegerProperty servingsProperty = block.getServingsProperty();
+                    int servings = state.getValue(servingsProperty);
+                    if(servings == 3 || servings == 4) return ConfiguredModel.builder()
+                            .modelFile(existingModel(getName(block) + "_stage1"))
+                            .rotationY(((int) state.getValue(FeastBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
+                            .build();;
+                    String suffix = "_stage" + (block.getMaxServings() - servings);
 
+                    if (servings == 2) {
+                        suffix = "_stage1";
+                    }
 
+                    if (servings == 1) {
+                        suffix = "_stage0";
+                    }
+                    if (servings == 0) {
+                        suffix = "_leftover";
+                    }
+
+                    return ConfiguredModel.builder()
+                            .modelFile(existingModel(getName(block) + suffix))
+                            .rotationY(((int) state.getValue(FeastBlock.FACING).toYRot() + DEFAULT_ANGLE_OFFSET) % 360)
+                            .build();
+                });
+    }
 
     private void createPottedPlant(RegistryObject<Block> plant, RegistryObject<Block> pottedPlant, String renderType){
         ConfiguredModel cFfile = new ConfiguredModel(pottedPlant(name(pottedPlant.get()), blockTexture(plant.get()), renderType));
@@ -207,20 +252,6 @@ public class SDBlockStateGenerator extends BlockStateProvider {
         ModelFile file = models().getExistingFile(prefix(baseName + "_0"));
         simpleBlockItem(pBlock, file);
     }
-
-    //private void createFogBlock(Block pBlock, String renderTyp) {
-    //    String baseName = name(pBlock);
-    //    getVariantBuilder(pBlock).forAllStatesExcept((state ->
-    //    {
-    //        int strength = state.getValue(FogBlock.STRENGTH);
-    //        ResourceLocation textureSuspicious = prefix("block/" + baseName + "_" + strength);
-    //        ModelFile text = cubeAll(baseName + "_" + strength, textureSuspicious, renderTyp);
-    //        return ConfiguredModel.builder().modelFile(text).build();
-    //    }
-    //    ));
-    //    ModelFile file = models().getExistingFile(prefix(baseName + "_0"));
-    //    simpleBlockItem(pBlock, file);
-    //}
 
     private void createSkullBlocks(RegistryObject<Block> RegistryObject) {
         Block block = RegistryObject.get();

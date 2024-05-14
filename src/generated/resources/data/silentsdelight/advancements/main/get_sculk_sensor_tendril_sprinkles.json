@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/get_sculk_sensor_tendril",
+  "criteria": {
+    "sculk_sensor_tendril_sprinkles": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:sculk_sensor_sprinkles"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:sculk_sensor_sprinkles"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles"
+    }
+  },
+  "requirements": [
+    [
+      "sculk_sensor_tendril_sprinkles"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

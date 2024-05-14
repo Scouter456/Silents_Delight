@@ -1,0 +1,10 @@
+{
+  "replace": "false",
+  "values": [
+    "silentsdelight:sculk_vein_salad",
+    "silentsdelight:sculk_sensor_tendril_roll",
+    "silentsdelight:sculk_sensor_tendril_roll_slice",
+    "silentsdelight:sculk_vein_salad",
+    "silentsdelight:heartburger"
+  ]
+}

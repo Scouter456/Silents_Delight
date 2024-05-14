@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/root",
+  "criteria": {
+    "get_sculk_shrieker_shake": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:sculk_shrieker_shake"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.get_sculk_shrieker_shake.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:sculk_shrieker_shake"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.get_sculk_shrieker_shake"
+    }
+  },
+  "requirements": [
+    [
+      "get_sculk_shrieker_shake"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

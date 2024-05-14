@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/obtain_warden_ear",
+  "criteria": {
+    "obtain_warden_ear_fried_rice": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:warden_ear_fried_rice"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "silentsdelight.advancement.obtain_warden_ear_fried_rice.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:warden_ear_fried_rice"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.obtain_warden_ear_fried_rice"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_warden_ear_fried_rice"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

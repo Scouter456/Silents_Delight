@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/root",
+  "criteria": {
+    "get_warden_heart": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:warden_heart"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.get_warden_heart.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:warden_heart"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.get_warden_heart"
+    }
+  },
+  "requirements": [
+    [
+      "get_warden_heart"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

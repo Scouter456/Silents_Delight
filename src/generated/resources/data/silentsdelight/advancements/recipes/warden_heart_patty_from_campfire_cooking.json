@@ -1,0 +1,47 @@
+{
+  "advancements": [
+    {
+      "advancement": {
+        "parent": "minecraft:recipes/root",
+        "criteria": {
+          "has_the_recipe": {
+            "conditions": {
+              "recipe": "silentsdelight:warden_heart_patty_from_campfire_cooking"
+            },
+            "trigger": "minecraft:recipe_unlocked"
+          },
+          "warden_heart_patty": {
+            "conditions": {
+              "items": [
+                {
+                  "items": [
+                    "silentsdelight:minced_warden_heart"
+                  ]
+                }
+              ]
+            },
+            "trigger": "minecraft:inventory_changed"
+          }
+        },
+        "requirements": [
+          [
+            "warden_heart_patty",
+            "has_the_recipe"
+          ]
+        ],
+        "rewards": {
+          "recipes": [
+            "silentsdelight:warden_heart_patty_from_campfire_cooking"
+          ]
+        },
+        "sends_telemetry_event": false
+      },
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "farmersdelight"
+        }
+      ]
+    }
+  ]
+}

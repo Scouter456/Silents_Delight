@@ -45,24 +45,18 @@ public abstract class PlayerMixin extends Player implements  VibrationSystem {
     }
 
 
-    @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        //if (TotallyEnoughPainMod.config.monsters_can_warden_sense == true) {
+    @Inject(at = @At("TAIL"), method = "addAdditionalSaveData")
+    public void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
             Data.CODEC.encodeStart(NbtOps.INSTANCE, this.vibrationData).resultOrPartial(LOGGER::error).ifPresent(tag -> compound.put("silentsdelight_listener", (Tag) tag));
-       // }
     }
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-       // if (TotallyEnoughPainMod.config.monsters_can_warden_sense == true) {
+    @Inject(at = @At("TAIL"), method = "readAdditionalSaveData")
+    public void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
             if (compound.contains("silentsdelight_listener", 10)) {
                 Data.CODEC.parse(new Dynamic<>(NbtOps.INSTANCE, compound.getCompound("silentsdelight_listener"))).resultOrPartial(LOGGER::error).ifPresent(data -> {
                     this.vibrationData = data;
                 });
             }
-        //}
     }
 
     @Override
@@ -75,11 +69,9 @@ public abstract class PlayerMixin extends Player implements  VibrationSystem {
         return this.vibrationUser;
     }
 
-    @Override
-    public void tick() {
-        super.tick();
+    @Inject(at = @At("TAIL"), method = "tick")
+    public void tick(CallbackInfo ci) {
         if (this.level()instanceof ServerLevel serverLevel)
-            //if (TotallyEnoughPainMod.config.monsters_can_warden_sense == true)
                 Ticker.tick(serverLevel, this.vibrationData, this.vibrationUser);
     }
 

@@ -1,0 +1,30 @@
+{
+  "parent": "silentsdelight:main/get_sculk_catalyst_pie",
+  "criteria": {
+    "grow_sculk_catalyst_pie": {
+      "conditions": {},
+      "trigger": "silentsdelight:kill_mob_near_sculk_catalyst_pie"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.grow_sculk_catalyst_pie.desc"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "silentsdelight:sculk_catalyst_pie_slice"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.grow_sculk_catalyst_pie"
+    }
+  },
+  "requirements": [
+    [
+      "grow_sculk_catalyst_pie"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

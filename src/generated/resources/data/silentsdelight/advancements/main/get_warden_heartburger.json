@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/get_warden_heart",
+  "criteria": {
+    "get_warden_heartburger": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:heartburger"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.get_warden_heartburger.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:heartburger"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.get_warden_heartburger"
+    }
+  },
+  "requirements": [
+    [
+      "get_warden_heartburger"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

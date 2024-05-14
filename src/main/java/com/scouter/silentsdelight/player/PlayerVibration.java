@@ -1,6 +1,7 @@
 package com.scouter.silentsdelight.player;
 
 import com.scouter.silentsdelight.SilentsDelight;
+import com.scouter.silentsdelight.effects.SDEffects;
 import com.scouter.silentsdelight.message.EntityRenderOutlineMessage;
 import com.scouter.silentsdelight.message.SDMessages;
 import net.minecraft.core.BlockPos;
@@ -10,7 +11,9 @@ import net.minecraft.tags.GameEventTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.EntityPositionSource;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gameevent.PositionSource;
@@ -44,14 +47,14 @@ public class PlayerVibration implements VibrationSystem {
     public static class VibrationUser implements User {
 
         private final UUID owner;
-        private final ServerLevel level;
+        private final Level level;
         private final PositionSource positionSource;
-        private final ServerPlayer serverPlayer;
-        public VibrationUser(ServerPlayer serverPlayer) {
-            this.owner = serverPlayer.getUUID();
-            this.level = serverPlayer.serverLevel();
-            positionSource = new EntityPositionSource(serverPlayer, serverPlayer.getEyeHeight());
-            this.serverPlayer = serverPlayer;
+        private final LivingEntity serverPlayer;
+        public VibrationUser(LivingEntity entity) {
+            this.owner = entity.getUUID();
+            this.level = entity.level();
+            positionSource = new EntityPositionSource(entity, entity.getEyeHeight());
+            this.serverPlayer = entity;
         }
 
         @Override
@@ -71,7 +74,7 @@ public class PlayerVibration implements VibrationSystem {
 
         @Override
         public boolean canReceiveVibration(ServerLevel pLevel, BlockPos pPos, GameEvent pGameEvent, GameEvent.Context pContext) {
-            if(!serverPlayer.hasEffect(MobEffects.NIGHT_VISION)) {
+            if(!serverPlayer.hasEffect(SDEffects.WARDENS_SENSE.get())) {
                 return false;
             }
             if(pContext.sourceEntity() instanceof ServerPlayer serverPlayer) {
@@ -94,9 +97,9 @@ public class PlayerVibration implements VibrationSystem {
             if(pEntity != null) {
                 SDMessages.sendToClients(new EntityRenderOutlineMessage<>(serverPlayer.getUUID(), pEntity.getId()));
             }
-            SilentsDelight.LOGGER.info("Receiving vibrations 1 " + pEntity );
-            SilentsDelight.LOGGER.info("Receiving vibrations 2 " + pPlayerEntity );
-
+            if(pPlayerEntity != null) {
+                SDMessages.sendToClients(new EntityRenderOutlineMessage<>(serverPlayer.getUUID(), pPlayerEntity.getId()));
+            }
         }
     }
 }

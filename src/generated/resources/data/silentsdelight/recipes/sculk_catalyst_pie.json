@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:wheat"
+    },
+    "O": {
+      "item": "silentsdelight:sculk_catalyst_pie_crust"
+    },
+    "a": {
+      "item": "minecraft:sculk_catalyst"
+    },
+    "x": {
+      "item": "minecraft:sculk"
+    }
+  },
+  "pattern": [
+    "###",
+    "aaa",
+    "xOx"
+  ],
+  "result": {
+    "item": "silentsdelight:sculk_catalyst_pie"
+  },
+  "show_notification": true
+}

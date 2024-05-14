@@ -32,6 +32,7 @@ public class SilentsDelight
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
         modbus.addListener(ModSetup::init);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> modbus.addListener(ClientSetup::init));
+
     }
 
 

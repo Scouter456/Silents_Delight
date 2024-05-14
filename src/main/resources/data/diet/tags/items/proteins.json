@@ -1,0 +1,20 @@
+{
+  "replace": "false",
+  "values": [
+    "silentsdelight:warden_ear",
+    "silentsdelight:cut_warden_ear",
+    "silentsdelight:warden_ear_on_a_stick",
+    "silentsdelight:baked_warden_ear_on_a_stick",
+    "silentsdelight:warden_ear_fried_rice",
+    "silentsdelight:sculk_sensor_tendril",
+    "silentsdelight:sculk_sensor_tendril_roll",
+    "silentsdelight:sculk_sensor_tendril_roll_slice",
+    "silentsdelight:sculk_sensor_sprinkles",
+    "silentsdelight:sculk_barbecue_stick",
+    "silentsdelight:sculk_soup",
+    "silentsdelight:warden_heart",
+    "silentsdelight:minced_warden_heart",
+    "silentsdelight:warden_heart_patty",
+    "silentsdelight:heartburger"
+  ]
+}

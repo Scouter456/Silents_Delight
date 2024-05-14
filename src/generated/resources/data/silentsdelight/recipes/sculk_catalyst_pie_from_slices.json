@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "silentsdelight:sculk_catalyst_pie_slice"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "item": "silentsdelight:sculk_catalyst_pie"
+  },
+  "show_notification": true
+}

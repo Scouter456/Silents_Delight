@@ -2,6 +2,7 @@ package com.scouter.silentsdelight.datagen;
 
 import com.google.common.collect.ImmutableMap;
 import com.scouter.silentsdelight.SilentsDelight;
+import com.scouter.silentsdelight.items.SDItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
@@ -42,7 +43,28 @@ public class ItemModelGenerator extends ItemModelProvider {
                     .build();
     @Override
     protected void registerModels() {
-
+        simpleItem(SDItems.WARDEN_EAR);
+        simpleItem(SDItems.CUT_WARDEN_EAR);
+        simpleItem(SDItems.WARDEN_EAR_ON_A_STICK);
+        simpleItem(SDItems.BAKED_WARDEN_EAR_ON_A_STICK);
+        simpleItem(SDItems.WARDEN_EAR_FRIED_RICE);
+        simpleItem(SDItems.SCULK_SENSOR_TENDRIL);
+        simpleItem(SDItems.SCULK_SENSOR_TENDRIL_ROLL);
+        simpleItem(SDItems.SCULK_SENSOR_TENDRIL_ROLL_SLICE);
+        simpleItem(SDItems.SCULK_SENSOR_SPRINKLES);
+        simpleItem(SDItems.SCULK_BARBECUE_STICK);
+        simpleItem(SDItems.SCULK_SOUP);
+        simpleItem(SDItems.SCULK_VEIN_SALAD);
+        simpleItem(SDItems.SCULK_CATALYST_PIE_CRUST);
+        simpleItem(SDItems.SCULK_CATALYST_PIE);
+        simpleItem(SDItems.SCULK_CATALYST_PIE_SLICE);
+        simpleItem(SDItems.SCULK_SHRIEKER_SHAKE);
+        simpleItem(SDItems.WARDEN_HEART);
+        simpleItem(SDItems.MINCED_WARDEN_HEART);
+        simpleItem(SDItems.WARDEN_HEART_PATTY);
+        simpleItem(SDItems.HEARTBURGER);
+        simpleItem(SDItems.PLATED_WARDEN_HEART);
+        simpleItem(SDItems.PLATE_OF_WARDEN_HEART);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

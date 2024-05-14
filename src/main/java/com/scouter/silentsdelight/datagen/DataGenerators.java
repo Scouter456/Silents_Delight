@@ -32,6 +32,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new LanguageGenerator(packOutput));
         generator.addProvider(event.includeClient(), new SDBlockStateGenerator(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new ItemModelGenerator(packOutput, existingFileHelper));
+        generator.addProvider(event.includeServer(), new SDAdvancements(packOutput, lookupProvider, existingFileHelper));
 
 
 

@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/root",
+  "criteria": {
+    "get_sculk_vein_salad": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:sculk_vein_salad"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.get_sculk_vein_salad.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:sculk_vein_salad"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.get_sculk_vein_salad"
+    }
+  },
+  "requirements": [
+    [
+      "get_sculk_vein_salad"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

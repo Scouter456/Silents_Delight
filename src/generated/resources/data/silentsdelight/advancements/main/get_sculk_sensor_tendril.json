@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/root",
+  "criteria": {
+    "sculk_sensor_tendril": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:sculk_sensor_tendril"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.get_sculk_sensor_tendril.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:sculk_sensor_tendril"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.get_sculk_sensor_tendril"
+    }
+  },
+  "requirements": [
+    [
+      "sculk_sensor_tendril"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

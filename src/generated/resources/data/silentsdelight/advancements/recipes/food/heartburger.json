@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "silentsdelight:heartburger"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_warden_heart_patty": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:warden_heart_patty"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_warden_heart_patty",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "silentsdelight:heartburger"
+    ]
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/root",
+  "criteria": {
+    "get_sculk_soup": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:sculk_soup"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.get_sculk_soup.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:sculk_soup"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.get_sculk_soup"
+    }
+  },
+  "requirements": [
+    [
+      "get_sculk_soup"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

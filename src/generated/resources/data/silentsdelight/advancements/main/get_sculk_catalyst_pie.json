@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/root",
+  "criteria": {
+    "get_sculk_catalyst_pie": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:sculk_catalyst_pie"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.get_sculk_catalyst_pie.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:sculk_catalyst_pie"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.get_sculk_catalyst_pie"
+    }
+  },
+  "requirements": [
+    [
+      "get_sculk_catalyst_pie"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "silentsdelight:plated_warden_heart"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_warden_heart": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:warden_heart"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_warden_heart",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "silentsdelight:plated_warden_heart"
+    ]
+  },
+  "sends_telemetry_event": false
+}

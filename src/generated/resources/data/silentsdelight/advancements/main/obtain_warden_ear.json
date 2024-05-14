@@ -1,0 +1,38 @@
+{
+  "parent": "silentsdelight:main/root",
+  "criteria": {
+    "obtain_warden_ear": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "silentsdelight:warden_ear"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "silentsdelight.advancement.obtain_warden_ear.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "silentsdelight:warden_ear"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "silentsdelight.advancement.obtain_warden_ear"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_warden_ear"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

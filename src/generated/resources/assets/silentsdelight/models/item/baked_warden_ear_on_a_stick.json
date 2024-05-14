@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "silentsdelight:item/baked_warden_ear_on_a_stick"
+  }
+}
