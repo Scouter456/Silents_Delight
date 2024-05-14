@@ -1,0 +1,31 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+        "type": "farmersdelight:cooking",
+        "container": {
+          "item": "minecraft:bowl"
+        },
+        "cookingtime": 200,
+        "experience": 0.35,
+        "ingredients": [
+          {
+            "item": "minecraft:sculk"
+          },
+          {
+            "tag": "c:eggs"
+          },
+          {
+            "tag": "c:vegetables/carrot"
+          }
+        ],
+        "recipe_book_tab": "meals",
+        "result": {
+          "item": "silentsdelight:sculk_soup"
+        }
+      }

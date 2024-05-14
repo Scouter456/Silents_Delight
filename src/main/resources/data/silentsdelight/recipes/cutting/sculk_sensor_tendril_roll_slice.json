@@ -1,0 +1,25 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+        "type": "farmersdelight:cutting",
+        "ingredients": [
+          {
+            "item": "silentsdelight:sculk_sensor_tendril_roll"
+          }
+        ],
+        "result": [
+          {
+            "count": 3,
+            "item": "silentsdelight:sculk_sensor_tendril_roll_slice"
+          }
+        ],
+        "tool": {
+          "tag": "c:tools/knives"
+        }
+      }

@@ -17,7 +17,6 @@ import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -40,7 +39,7 @@ public abstract class PieBaseBlockEntity extends BaseEntityBlock {
     protected static final VoxelShape SHAPE;
     public final Supplier<Item> pieSlice;
 
-    public PieBaseBlockEntity(BlockBehaviour.Properties properties, Supplier<Item> pieSlice) {
+    public PieBaseBlockEntity(Properties properties, Supplier<Item> pieSlice) {
         super(properties);
         this.pieSlice = pieSlice;
         this.registerDefaultState((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(FACING, Direction.NORTH)).setValue(BITES, 0));

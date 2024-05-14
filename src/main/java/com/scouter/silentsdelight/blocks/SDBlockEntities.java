@@ -1,17 +1,25 @@
 package com.scouter.silentsdelight.blocks;
 
 import com.scouter.silentsdelight.SilentsDelight;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Mod.EventBusSubscriber(modid = SilentsDelight.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+import static com.scouter.silentsdelight.SilentsDelight.prefix;
+
 public class SDBlockEntities {
-    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, SilentsDelight.MODID);
+    public static final Logger LOGGER = LoggerFactory.getLogger(SilentsDelight.MODID);
 
-    public static final RegistryObject<BlockEntityType<SculkCatalystPieEntity>> CATALYST_PIE = BLOCK_ENTITY.register("catalyst_pie",
-            () -> BlockEntityType.Builder.of(SculkCatalystPieEntity::new, SDBlocks.SCULK_CATALYST_PIE.get()).build(null));
+    public static final BlockEntityType<SculkCatalystPieEntity> CATALYST_PIE =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,prefix("catalyst_pie"),
+                    FabricBlockEntityTypeBuilder.create(SculkCatalystPieEntity::new,
+                            SDBlocks.SCULK_CATALYST_PIE).build());
 
+
+    public static void BLOCK_ENTITIES(){
+        LOGGER.info("Registering Block Entities for " + SilentsDelight.MODID);
+    }
 }

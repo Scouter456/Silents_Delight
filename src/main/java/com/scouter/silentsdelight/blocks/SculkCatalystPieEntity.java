@@ -1,6 +1,5 @@
 package com.scouter.silentsdelight.blocks;
 
-import com.scouter.silentsdelight.SilentsDelight;
 import com.scouter.silentsdelight.advancements.SDCriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -14,7 +13,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.SculkCatalystBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.BlockPositionSource;
@@ -24,14 +22,14 @@ import net.minecraft.world.level.gameevent.PositionSource;
 import net.minecraft.world.phys.Vec3;
 
 public class SculkCatalystPieEntity extends BlockEntity implements GameEventListener.Holder<SculkCatalystPieEntity.CatalystListener>{
-    private final SculkCatalystPieEntity.CatalystListener catalystListener;
+    private final CatalystListener catalystListener;
     public SculkCatalystPieEntity(BlockPos pPos, BlockState pBlockState) {
-        super(SDBlockEntities.CATALYST_PIE.get(), pPos, pBlockState);
-        this.catalystListener = new SculkCatalystPieEntity.CatalystListener(pBlockState, new BlockPositionSource(pPos));
+        super(SDBlockEntities.CATALYST_PIE, pPos, pBlockState);
+        this.catalystListener = new CatalystListener(pBlockState, new BlockPositionSource(pPos));
 
     }
 
-    public SculkCatalystPieEntity.CatalystListener getListener() {
+    public CatalystListener getListener() {
         return this.catalystListener;
     }
 
@@ -58,8 +56,8 @@ public class SculkCatalystPieEntity extends BlockEntity implements GameEventList
             return 8;
         }
 
-        public GameEventListener.DeliveryMode getDeliveryMode() {
-            return GameEventListener.DeliveryMode.BY_DISTANCE;
+        public DeliveryMode getDeliveryMode() {
+            return DeliveryMode.BY_DISTANCE;
         }
 
         public boolean handleGameEvent(ServerLevel p_283470_, GameEvent p_282184_, GameEvent.Context p_283014_, Vec3 p_282350_) {

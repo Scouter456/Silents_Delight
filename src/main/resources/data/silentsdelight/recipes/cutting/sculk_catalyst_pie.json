@@ -1,0 +1,25 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+        "type": "farmersdelight:cutting",
+        "ingredients": [
+          {
+            "item": "silentsdelight:sculk_catalyst_pie"
+          }
+        ],
+        "result": [
+          {
+            "count": 4,
+            "item": "silentsdelight:sculk_catalyst_pie_slice"
+          }
+        ],
+        "tool": {
+          "tag": "c:tools/knives"
+        }
+      }

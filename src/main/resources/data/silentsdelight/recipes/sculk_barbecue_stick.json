@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:crops/tomato"
+    },
+    [
+      {
+        "item": "silentsdelight:sculk_sensor_tendril"
+      },
+      {
+        "item": "silentsdelight:warden_ear"
+      }
+    ],
+    [
+      {
+        "item": "silentsdelight:sculk_sensor_tendril"
+      },
+      {
+        "item": "silentsdelight:warden_ear"
+      }
+    ],
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "result": {
+    "item": "silentsdelight:sculk_barbecue_stick"
+  }
+}

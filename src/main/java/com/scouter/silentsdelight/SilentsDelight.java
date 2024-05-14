@@ -1,43 +1,60 @@
 package com.scouter.silentsdelight;
 
-import com.mojang.logging.LogUtils;
+import com.scouter.silentsdelight.player.VibrationEntities;
 import com.scouter.silentsdelight.setup.ClientSetup;
-import com.scouter.silentsdelight.setup.ModSetup;
 import com.scouter.silentsdelight.setup.Registration;
+import net.fabricmc.api.ModInitializer;
+
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import vectorwing.farmersdelight.FarmersDelight;
 
+import java.util.Collection;
 import java.util.Locale;
+import java.util.Set;
+import java.util.UUID;
 
-// The value here should match an entry in the META-INF/mods.toml file
-@Mod(SilentsDelight.MODID)
-public class SilentsDelight
-{
-    // Define mod id in a common place for everything to reference
-    public static final String MODID = "silentsdelight";
-    // Directly reference a slf4j logger
-    public static final Logger LOGGER = LogUtils.getLogger();
+public class SilentsDelight implements ModInitializer {
+	// This logger is used to write text to the console and the log file.
+	// It is considered best practice to use your mod id as the logger's name.
+	// That way, it's clear which mod wrote info, warnings, and errors.
+    public static final Logger LOGGER = LoggerFactory.getLogger("silentsdelight");
+	public static final String MODID = "silentsdelight";
+	@Override
+	public void onInitialize() {
+		Registration.init();
+		ClientSetup.init();
+		this.registerLootTable();
 
-    public SilentsDelight()
-    {
-        Registration.init();
-        ModSetup.setup();
-        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
-        IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
-        modbus.addListener(ModSetup::init);
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> modbus.addListener(ClientSetup::init));
+	}
 
-    }
+	public static ResourceLocation prefix(String name) {
+		return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
+	}
+	protected void registerLootTable() {
+		Set<ResourceLocation> scavengingEntityIdList = Set.of(
+				EntityType.WARDEN.getDefaultLootTable()
+		);
 
-
-    public static ResourceLocation prefix(String name) {
-        return new ResourceLocation(MODID, name.toLowerCase(Locale.ROOT));
-    }
-
+		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
+			ResourceLocation injectId = new ResourceLocation(FarmersDelight.MODID, "inject/" + id.getPath());
+			if (scavengingEntityIdList.contains(id)) {
+				tableBuilder.pool(LootPool.lootPool().add(LootTableReference.lootTableReference(injectId)).build());
+			}
+		});
+	}
 }

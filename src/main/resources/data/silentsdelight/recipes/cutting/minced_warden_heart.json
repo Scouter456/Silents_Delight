@@ -1,0 +1,25 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+        "type": "farmersdelight:cutting",
+        "ingredients": [
+          {
+            "item": "silentsdelight:warden_heart"
+          }
+        ],
+        "result": [
+          {
+            "count": 2,
+            "item": "silentsdelight:minced_warden_heart"
+          }
+        ],
+        "tool": {
+          "tag": "c:tools/knives"
+        }
+      }

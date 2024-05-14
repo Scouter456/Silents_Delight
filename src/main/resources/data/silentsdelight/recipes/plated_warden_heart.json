@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "c:milks"
+    },
+    {
+      "item": "minecraft:baked_potato"
+    },
+    {
+      "tag": "c:crops/onion"
+    },
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "silentsdelight:warden_heart"
+    }
+  ],
+  "result": {
+    "item": "silentsdelight:plated_warden_heart"
+  }
+}

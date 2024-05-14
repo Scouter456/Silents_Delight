@@ -1,0 +1,18 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "farmersdelight"
+      ]
+    }
+  ],
+        "type": "minecraft:smoking",
+        "category": "food",
+        "cookingtime": 100,
+        "experience": 0.35,
+        "ingredient": {
+          "item": "silentsdelight:warden_ear_on_a_stick"
+        },
+        "result": "silentsdelight:baked_warden_ear_on_a_stick"
+      }

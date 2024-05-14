@@ -1,15 +1,14 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "com.scouter.silentsdelight.mixin",
-  "compatibilityLevel": "JAVA_17",
-  "refmap": "silentsdelight.refmap.json",
-  "mixins": [
-    "PlayerMixin"
-  ],
-  "client": [
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+	"required": true,
+	"package": "com.scouter.silentsdelight.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+		"PlayerMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"client": [
+		"render.LevelRendererMixin"
+	]
 }

@@ -1,0 +1,35 @@
+{
+	"schemaVersion": 1,
+	"id": "silentsdelight",
+	"version": "${version}",
+	"name": "Silents Delight",
+	"description": "This is a mod that adds food based on the Deep Dark!",
+	"authors": [
+		"Scouter"
+	],
+	"contact": {
+		"homepage": "https://github.com/Scouter456/Silents_Delight",
+		"sources": "https://github.com/Scouter456/Silents_Delight"
+	},
+	"license": "MIT",
+	"icon": "assets/silentsdelight/silents_delight_logo.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "com.scouter.silentsdelight.SilentsDelight"
+		],
+		"client": [
+			"com.scouter.silentsdelight.setup.ClientSetup"
+		]
+	},
+	"mixins": [
+		"silentsdelight.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"farmersdelight": ">=1.4.1-1.20-1.20.1"
+	}
+}
