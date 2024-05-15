@@ -1,4 +1,4 @@
-package com.scouter.silentsdelight.mixin;
+/*package com.scouter.silentsdelight.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.scouter.silentsdelight.effects.SDEffects;
@@ -25,3 +25,4 @@ public class VibrationSystemListenerMixin {
         return original;
     }
 }
+*/

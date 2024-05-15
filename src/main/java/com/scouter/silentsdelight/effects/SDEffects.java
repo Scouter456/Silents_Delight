@@ -13,8 +13,8 @@ import static com.scouter.silentsdelight.SilentsDelight.prefix;
 public class SDEffects {
     public static final Logger LOGGER = LoggerFactory.getLogger(SilentsDelight.MODID);
 
-    public static final MobEffect ONE_OF_US = registerEffect("one_of_us", new OneOfUsEffect(MobEffectCategory.BENEFICIAL, 0x1c9c9e));
     public static final MobEffect WARDENS_SENSE = registerEffect("warden_sense", new WardenSenseEffect(MobEffectCategory.BENEFICIAL, 0x009295));
+    //public static final MobEffect ONE_OF_US = registerEffect("one_of_us", new OneOfUsEffect(MobEffectCategory.BENEFICIAL, 0x1c9c9e));
 
     public static MobEffect registerEffect(String name, MobEffect effect){
         return Registry.register(BuiltInRegistries.MOB_EFFECT, prefix(name), effect);
