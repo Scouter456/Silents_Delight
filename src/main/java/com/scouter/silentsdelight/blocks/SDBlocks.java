@@ -15,10 +15,9 @@ public class SDBlocks {
     public static final Logger LOGGER = LoggerFactory.getLogger(SilentsDelight.MODID);
 
     public static final Block SCULK_CATALYST_PIE = registerBlock("sculk_catalyst_pie",
-            new SculkCatalystPie(Block.Properties.copy(Blocks.CAKE), () -> SDItems.SCULK_CATALYST_PIE_SLICE));
+            new SculkCatalystPie(Block.Properties.copy(Blocks.CAKE), () ->SDItems.SCULK_CATALYST_PIE_SLICE));
 
-    public static final Block PLATED_WARDEN_HEART = registerBlock("plated_warden_heart",
-            new WardenHeartBlock(Block.Properties.copy(Blocks.CAKE), () -> SDItems.PLATE_OF_WARDEN_HEART, true));
+    public static final Block PLATED_WARDEN_HEART = registerBlock("plated_warden_heart", new WardenHeartBlock());
 
 
     private static Block registerBlock(String name, Block block){

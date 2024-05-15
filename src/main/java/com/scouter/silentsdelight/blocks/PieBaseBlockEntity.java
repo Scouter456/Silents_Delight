@@ -1,10 +1,12 @@
 package com.scouter.silentsdelight.blocks;
 
 import com.mojang.datafixers.util.Pair;
+import com.nhoryzon.mc.farmersdelight.registry.TagsRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -27,8 +29,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import vectorwing.farmersdelight.common.tag.ModTags;
-import vectorwing.farmersdelight.common.utility.ItemUtils;
 
 import java.util.Iterator;
 import java.util.function.Supplier;
@@ -64,8 +64,10 @@ public abstract class PieBaseBlockEntity extends BaseEntityBlock {
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
         if (level.isClientSide) {
-            if (heldStack.is(ModTags.KNIVES)) {
-                return this.cutSlice(level, pos, state, player);
+            if (heldStack.is(TagsRegistry.KNIVES)) {
+                //if (heldStack.is(ModTags.KNIVES)) {
+
+                    return this.cutSlice(level, pos, state, player);
             }
 
             if (this.consumeBite(level, pos, state, player) == InteractionResult.SUCCESS) {
@@ -77,7 +79,7 @@ public abstract class PieBaseBlockEntity extends BaseEntityBlock {
             }
         }
 
-        return heldStack.is(ModTags.KNIVES) ? this.cutSlice(level, pos, state, player) : this.consumeBite(level, pos, state, player);
+        return heldStack.is(TagsRegistry.KNIVES) ? this.cutSlice(level, pos, state, player) : this.consumeBite(level, pos, state, player);
     }
 
     protected InteractionResult consumeBite(Level level, BlockPos pos, BlockState state, Player playerIn) {
@@ -119,7 +121,10 @@ public abstract class PieBaseBlockEntity extends BaseEntityBlock {
         }
 
         Direction direction = player.getDirection().getOpposite();
-        ItemUtils.spawnItemEntity(level, this.getPieSliceItem(), (double)pos.getX() + 0.5, (double)pos.getY() + 0.3, (double)pos.getZ() + 0.5, (double)direction.getStepX() * 0.15, 0.05, (double)direction.getStepZ() * 0.15);
+        //ItemUtils.spawnItemEntity(level, this.getPieSliceItem(), (double)pos.getX() + 0.5, (double)pos.getY() + 0.3, (double)pos.getZ() + 0.5, (double)direction.getStepX() * 0.15, 0.05, (double)direction.getStepZ() * 0.15);
+        //level.playSound((Player)null, pos, SoundEvents.WOOL_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F);
+        //return InteractionResult.SUCCESS;
+        Containers.dropItemStack(level, (double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), this.getPieSliceItem());
         level.playSound((Player)null, pos, SoundEvents.WOOL_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F);
         return InteractionResult.SUCCESS;
     }

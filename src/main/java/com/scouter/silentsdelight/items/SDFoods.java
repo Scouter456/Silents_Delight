@@ -1,10 +1,10 @@
 package com.scouter.silentsdelight.items;
 
+import com.nhoryzon.mc.farmersdelight.registry.EffectsRegistry;
 import com.scouter.silentsdelight.effects.SDEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
-import vectorwing.farmersdelight.common.registry.ModEffects;
 
 public class SDFoods {
 
@@ -34,7 +34,8 @@ public class SDFoods {
 
     public static final FoodProperties WARDEN_EAR_FRIED_RICE = new FoodProperties.Builder()
             .nutrition(14).saturationMod(0.75f)
-            .effect(new MobEffectInstance(ModEffects.COMFORT.get(), LONG_DURATION, 0), 1.0F)
+            .effect(new MobEffectInstance(EffectsRegistry.COMFORT.get(), LONG_DURATION, 0), 1.0F)
+            //.effect(new MobEffectInstance(ModEffects.COMFORT.get(), LONG_DURATION, 0), 1.0F)
             //.effect(new MobEffectInstance(SDEffects.ONE_OF_US, SHORT_DURATION, 0), 1.0F)
             .effect(new MobEffectInstance(SDEffects.WARDENS_SENSE, BRIEF_DURATION, 0), 1.0F)
             .build();
@@ -75,7 +76,8 @@ public class SDFoods {
     public static final FoodProperties SCULK_SOUP = new FoodProperties.Builder()
             .nutrition(12)
             .saturationMod(0.8f)
-            .effect(new MobEffectInstance(ModEffects.COMFORT.get(), MEDIUM_DURATION, 0), 1.0F)
+            .effect(new MobEffectInstance(EffectsRegistry.COMFORT.get(), MEDIUM_DURATION, 0), 1.0F)
+            //.effect(new MobEffectInstance(ModEffects.COMFORT.get(), MEDIUM_DURATION, 0), 1.0F)
             //.effect(new MobEffectInstance(SDEffects.ONE_OF_US, SHORT_DURATION, 0), 1.0F)
             .build();
 

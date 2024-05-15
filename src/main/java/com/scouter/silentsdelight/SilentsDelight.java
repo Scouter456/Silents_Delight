@@ -1,7 +1,7 @@
 package com.scouter.silentsdelight;
 
+import com.nhoryzon.mc.farmersdelight.FarmersDelightMod;
 import com.scouter.silentsdelight.config.SilentsDelightConfig;
-import com.scouter.silentsdelight.setup.ClientSetup;
 import com.scouter.silentsdelight.setup.Registration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
@@ -11,7 +11,6 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import vectorwing.farmersdelight.FarmersDelight;
 
 import java.util.Locale;
 import java.util.Set;
@@ -26,7 +25,7 @@ public class SilentsDelight implements ModInitializer {
 	public void onInitialize() {
 		SilentsDelightConfig.registerConfigs();
 		Registration.init();
-		ClientSetup.init();
+
 		this.registerLootTable();
 
 	}
@@ -40,7 +39,7 @@ public class SilentsDelight implements ModInitializer {
 		);
 
 		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
-			ResourceLocation injectId = new ResourceLocation(FarmersDelight.MODID, "inject/" + id.getPath());
+			ResourceLocation injectId = new ResourceLocation(FarmersDelightMod.MOD_ID, "inject/" + id.getPath());
 			if (scavengingEntityIdList.contains(id)) {
 				tableBuilder.pool(LootPool.lootPool().add(LootTableReference.lootTableReference(injectId)).build());
 			}

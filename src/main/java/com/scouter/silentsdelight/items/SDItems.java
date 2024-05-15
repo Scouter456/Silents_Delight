@@ -1,6 +1,7 @@
 package com.scouter.silentsdelight.items;
 
 
+import com.nhoryzon.mc.farmersdelight.item.ConsumableItem;
 import com.scouter.silentsdelight.SilentsDelight;
 import com.scouter.silentsdelight.blocks.SDBlocks;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -8,12 +9,11 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import vectorwing.farmersdelight.common.item.ConsumableItem;
-import vectorwing.farmersdelight.common.item.KelpRollItem;
 
 import static com.scouter.silentsdelight.SilentsDelight.prefix;
 
@@ -38,8 +38,12 @@ public class SDItems {
     public static final Item SCULK_SENSOR_TENDRIL = registerItem("sculk_sensor_tendril", new ConsumableItem(new Item.Properties()
             .food(SDFoods.SCULK_SENSOR_TENDRIL), true));
 
-    public static final Item SCULK_SENSOR_TENDRIL_ROLL = registerItem("sculk_sensor_tendril_roll", new KelpRollItem(new Item.Properties()
-            .food(SDFoods.SCULK_SENSOR_TENDRIL_ROLL)));
+    public static final Item SCULK_SENSOR_TENDRIL_ROLL = registerItem("sculk_sensor_tendril_roll", new Item(new Item.Properties()
+            .food(SDFoods.SCULK_SENSOR_TENDRIL_ROLL)){
+        public int getUseDuration(ItemStack stack) {
+            return 64;
+        }
+    });
 
     public static final Item SCULK_SENSOR_TENDRIL_ROLL_SLICE = registerItem("sculk_sensor_tendril_roll_slice", new ConsumableItem(new Item.Properties()
             .food(SDFoods.SCULK_SENSOR_TENDRIL_SLICE), true));

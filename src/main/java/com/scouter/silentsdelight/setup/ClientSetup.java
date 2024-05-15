@@ -44,6 +44,11 @@ public class ClientSetup implements ClientModInitializer {
                 level.playLocalSound(entity.blockPosition(), event1, SoundSource.AMBIENT, SilentsDelightConfig.WARDEN_SENSE_SOUND_VOLUME, 1F, true);
             }
         });
+        ClientPlayNetworking.registerGlobalReceiver(EntityRenderOutlineMessage.ID, ((client, handler, buf, responseSender) -> {
+            UUID sender = buf.readUUID();
+            int entityId = buf.readVarInt();
+            VibrationEntities.addToShow(sender, entityId);
+        }));
     }
 
 
@@ -55,12 +60,5 @@ public class ClientSetup implements ClientModInitializer {
         RenderType solid = RenderType.solid();
 
 
-    }
-    public static void init(){
-        ClientPlayNetworking.registerGlobalReceiver(EntityRenderOutlineMessage.ID, ((client, handler, buf, responseSender) -> {
-            UUID sender = buf.readUUID();
-            int entityId = buf.readVarInt();
-            VibrationEntities.addToShow(sender, entityId);
-        }));
     }
 }

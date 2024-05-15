@@ -66,11 +66,11 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	//modImplementation "curse.maven:farmersdelight-482834:4640640"
+	modImplementation "curse.maven:farmersdelight-482834:4640640"
 
-	modImplementation("vectorwing:FarmersDelight:${fdrf_version}") {
-		exclude(group: "net.fabricmc")
-	}
+	//modImplementation("vectorwing:FarmersDelight:${fdrf_version}") {
+	//	exclude(group: "net.fabricmc")
+	//}
 
 
 	//modImplementation "curse.maven:fdrf-993166:5227150"
