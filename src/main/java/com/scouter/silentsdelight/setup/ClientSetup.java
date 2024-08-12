@@ -34,6 +34,7 @@ public class ClientSetup implements ClientModInitializer {
             Player player = minecraft.player;
             UUID uuid = player.getUUID();
             Collection<Integer> ids = VibrationEntities.getToShow(uuid);
+            if(ids.isEmpty()) return;
 
             for(Integer id : ids) {
                 Entity entity = level.getEntity(id);

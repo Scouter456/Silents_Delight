@@ -41,7 +41,7 @@ public class SilentsDelight implements ModInitializer {
 		LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
 			ResourceLocation injectId = new ResourceLocation(FarmersDelightMod.MOD_ID, "inject/" + id.getPath());
 			if (scavengingEntityIdList.contains(id)) {
-				tableBuilder.pool(LootPool.lootPool().add(LootTableReference.lootTableReference(injectId)).build());
+				tableBuilder.withPool(LootPool.lootPool().add(LootTableReference.lootTableReference(injectId)));
 			}
 		});
 	}
