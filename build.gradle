@@ -28,18 +28,6 @@ repositories {
 		name = "Greenhouse Maven"
 		url = 'https://maven.greenhouseteam.dev/releases/'
 	}
-	maven { url = "https://mvn.devos.one/releases/" } // Porting Lib
-	maven {
-		url "https://maven.jamieswhiteshirt.com/libs-release" // Reach Entity Attributes (Required by Porting Lib)
-		content {
-			includeGroup "com.jamieswhiteshirt"
-		}
-	}
-
-	maven {
-		name = "Greenhouse Maven"
-		url = 'https://maven.greenhouseteam.dev/releases/'
-	}
 	maven { url "https://mvn.devos.one/releases/" } // Porting Lib
 	maven {
 		url "https://maven.jamieswhiteshirt.com/libs-release" // Reach Entity Attributes (Required by Porting Lib)
@@ -67,10 +55,11 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	//modImplementation "curse.maven:farmersdelight-482834:4640640"
+	modImplementation "vectorwing:FarmersDelight-Refabricated:1.20.1-2.0.12"
 
-	modImplementation("vectorwing:FarmersDelight:${fdrf_version}") {
-		exclude(group: "net.fabricmc")
-	}
+	//modImplementation("vectorwing:FarmersDelight:${fdrf_version}") {
+	//	exclude(group: "net.fabricmc")
+	//}
 
 
 	//modImplementation "curse.maven:fdrf-993166:5227150"

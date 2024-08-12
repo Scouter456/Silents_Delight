@@ -26,7 +26,7 @@ public class SilentsDelight implements ModInitializer {
 	public void onInitialize() {
 		SilentsDelightConfig.registerConfigs();
 		Registration.init();
-		ClientSetup.init();
+
 		this.registerLootTable();
 
 	}

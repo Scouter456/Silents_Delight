@@ -42,6 +42,10 @@ public class LevelRendererMixin {
         UUID uuid = player.getUUID();
         Vec3 projectedView = minecraft.gameRenderer.getMainCamera().getPosition();
         Collection<Integer> ids = VibrationEntities.getToShow(uuid);
+
+        if(ids.isEmpty()) return;
+
+
         RenderBuffers renderBuffers = minecraft.renderBuffers();
         MultiBufferSource.BufferSource bufferSource = renderBuffers.bufferSource();
         GL11.glEnable(GL11.GL_BLEND);

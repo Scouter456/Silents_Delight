@@ -23,7 +23,7 @@ public class ClientSetup implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         RenderLayerRegistration();
-
+        ClientSetup.init();
         ClientTickEvents.START_CLIENT_TICK.register((e) -> {
             if(!SilentsDelightConfig.WARDEN_SENSE_SOUND) return;
             Minecraft minecraft = Minecraft.getInstance();
@@ -34,6 +34,7 @@ public class ClientSetup implements ClientModInitializer {
             Player player = minecraft.player;
             UUID uuid = player.getUUID();
             Collection<Integer> ids = VibrationEntities.getToShow(uuid);
+            if(ids.isEmpty()) return;
 
             for(Integer id : ids) {
                 Entity entity = level.getEntity(id);
