@@ -1,6 +1,7 @@
 {
   "block.silentsdelight.plated_warden_heart": "Plated Warden Heart",
   "block.silentsdelight.sculk_catalyst_pie": "Sculk Catalyst Pie",
+  "effect.silentsdelight.warden_sense.description": "",
   "effect.silentsdelight.warden_sense": "Warden Sense",
   "item.silentsdelight.baked_warden_ear_on_a_stick": "Baked Warden Ear on a Stick",
   "item.silentsdelight.cut_warden_ear": "Cut Warden Ear",
@@ -31,8 +32,8 @@
   "silentsdelight.advancement.get_sculk_sensor_tendril.desc": "Obtain Sculk Sensor Tendrils",
   "silentsdelight.advancement.get_sculk_sensor_tendril_roll": "Rolled Sensor",
   "silentsdelight.advancement.get_sculk_sensor_tendril_roll.desc": "Craft a Sculk Sensor Tendril Roll",
-  "silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles": "Craft a Sculk Sensor Tendril Sprinkles",
-  "silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles.desc": "Sprinkled Delight",
+  "silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles": "Sprinkled Delight",
+  "silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles.desc": "Craft a Sculk Sensor Tendril Sprinkles",
   "silentsdelight.advancement.get_sculk_shrieker_shake": "Shh be silent!",
   "silentsdelight.advancement.get_sculk_shrieker_shake.desc": "Craft a Sculk Shrieker Shake",
   "silentsdelight.advancement.get_sculk_soup": "Peer into the depths",
