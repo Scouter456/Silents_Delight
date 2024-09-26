@@ -1,8 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "farmersdelight:cut_elder_guardian",
-    "farmersdelight:cut_tentacles_squid",
-    "farmersdelight:guardian_drop"
+    "farmersdelight:warden_heart_drop",
+    "farmersdelight:warden_ear_drop"
   ]
 }

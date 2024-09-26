@@ -89,8 +89,8 @@ public class LanguageGenerator extends LanguageProvider {
         add("silentsdelight.advancement.get_sculk_soup.desc", "Cook Sculk Soup");
         add("silentsdelight.advancement.get_sculk_shrieker_shake", "Shh be silent!");
         add("silentsdelight.advancement.get_sculk_shrieker_shake.desc", "Craft a Sculk Shrieker Shake");
-        add("silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles.desc", "Sprinkled Delight");
-        add("silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles", "Craft a Sculk Sensor Tendril Sprinkles");
+        add("silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles", "Sprinkled Delight");
+        add("silentsdelight.advancement.get_sculk_sensor_tendril_sprinkles.desc", "Craft Sculk Sensor Tendril Sprinkles");
         add("silentsdelight.advancement.get_sculk_sensor_tendril_roll", "Rolled Sensor");
         add("silentsdelight.advancement.get_sculk_sensor_tendril_roll.desc", "Craft a Sculk Sensor Tendril Roll");
         add("silentsdelight.advancement.get_sculk_sensor_tendril", "A senseful food");

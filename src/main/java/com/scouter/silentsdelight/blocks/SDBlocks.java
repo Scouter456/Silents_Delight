@@ -8,9 +8,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import vectorwing.farmersdelight.common.block.FeastBlock;
-import vectorwing.farmersdelight.common.block.PieBlock;
-import vectorwing.farmersdelight.common.registry.ModItems;
 
 @Mod.EventBusSubscriber(modid = SilentsDelight.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SDBlocks {

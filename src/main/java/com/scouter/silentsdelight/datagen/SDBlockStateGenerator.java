@@ -21,7 +21,6 @@ import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 import vectorwing.farmersdelight.common.block.FeastBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
-import vectorwing.farmersdelight.common.registry.ModBlocks;
 
 import java.util.List;
 import java.util.function.Function;

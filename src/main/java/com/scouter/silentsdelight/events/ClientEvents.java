@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.logging.LogUtils;
 import com.scouter.silentsdelight.SilentsDelight;
+import com.scouter.silentsdelight.config.SilentsDelightConfig;
 import com.scouter.silentsdelight.player.VibrationEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -41,7 +42,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void playSound(TickEvent.ClientTickEvent event) {
         if(event.phase == TickEvent.Phase.END) return;
-
+        if(!SilentsDelightConfig.WARDEN_SENSE_SOUND.get()) return;
         Minecraft minecraft = Minecraft.getInstance();
         ClientLevel level = minecraft.level;
         if (level == null)
@@ -50,6 +51,7 @@ public class ClientEvents {
         Player player = minecraft.player;
         UUID uuid = player.getUUID();
         Collection<Integer> ids = VibrationEntities.getToShow(uuid);
+        if(ids.isEmpty()) return;
 
         for(Integer id : ids) {
             Entity entity = level.getEntity(id);
@@ -57,7 +59,7 @@ public class ClientEvents {
             BlockState state = entity.getBlockStateOn();
             if(state.is(Blocks.AIR)) continue;
             SoundEvent event1 = state.getSoundType().getStepSound();
-            level.playLocalSound(entity.blockPosition(), event1, SoundSource.AMBIENT, 10F, 1F, false);
+            level.playLocalSound(entity.blockPosition(), event1, SoundSource.AMBIENT, SilentsDelightConfig.WARDEN_SENSE_SOUND_VOLUME.get(), 1F, true);
         }
     }
 
@@ -80,6 +82,9 @@ public class ClientEvents {
             UUID uuid = player.getUUID();
             Vec3 projectedView = minecraft.gameRenderer.getMainCamera().getPosition();
             Collection<Integer> ids = VibrationEntities.getToShow(uuid);
+
+            if(ids.isEmpty()) return;
+
             RenderBuffers renderBuffers = minecraft.renderBuffers();
             MultiBufferSource.BufferSource bufferSource = renderBuffers.bufferSource();
             GL11.glEnable(GL11.GL_BLEND);
@@ -89,8 +94,6 @@ public class ClientEvents {
 
             poseStack.pushPose();
             poseStack.translate(-projectedView.x, -projectedView.y, -projectedView.z);
-            RenderSystem.enableDepthTest();
-            RenderSystem.depthFunc(514);
 
 
 
@@ -120,12 +123,10 @@ public class ClientEvents {
                 }
                 bufferSource.endBatch(renderType);
 
-                //outlinebuffersource.endOutlineBatch();
                 toRemove.add(id);
             }
 
             VibrationEntities.remove(uuid, toRemove);
-            RenderSystem.disableDepthTest();
             poseStack.popPose();
 
 

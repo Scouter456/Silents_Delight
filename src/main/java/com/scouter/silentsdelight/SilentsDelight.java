@@ -1,6 +1,7 @@
 package com.scouter.silentsdelight;
 
 import com.mojang.logging.LogUtils;
+import com.scouter.silentsdelight.config.SilentsDelightConfig;
 import com.scouter.silentsdelight.setup.ClientSetup;
 import com.scouter.silentsdelight.setup.ModSetup;
 import com.scouter.silentsdelight.setup.Registration;
@@ -9,7 +10,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -26,7 +29,11 @@ public class SilentsDelight
 
     public SilentsDelight()
     {
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SilentsDelightConfig.CONFIG_BUILDER);
+
         Registration.init();
+
         ModSetup.setup();
         IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();

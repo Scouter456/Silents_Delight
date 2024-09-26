@@ -14,7 +14,7 @@ public class SDTabs {
     private static final CreativeModeTab FOODS = new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 9)
             .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
             .title(Component.translatable("itemGroup.silentsdelight"))
-            .icon(() -> new ItemStack(Items.SOUL_SAND))
+            .icon(() -> new ItemStack(SDItems.WARDEN_HEART.get()))
             .displayItems((d, entries) -> {
                 for(RegistryObject<Item> item : SDItems.ITEMS.getEntries()) {
                     entries.accept(item.get());

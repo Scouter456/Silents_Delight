@@ -1,6 +1,5 @@
 package com.scouter.silentsdelight.player;
 
-import com.scouter.silentsdelight.SilentsDelight;
 import com.scouter.silentsdelight.effects.SDEffects;
 import com.scouter.silentsdelight.message.EntityRenderOutlineMessage;
 import com.scouter.silentsdelight.message.SDMessages;
@@ -9,7 +8,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.GameEventTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
